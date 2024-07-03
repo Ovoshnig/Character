@@ -50,7 +50,8 @@ public class PlayerMover : MonoBehaviour
     private void Move()
     {
         Vector3 translation = _walkSpeed * Time.deltaTime * new Vector3(_moveInput.x, 0f, _moveInput.y);
-        transform.Translate(translation);
+        translation = transform.TransformDirection(translation);
+        _rigidbody.velocity = translation;
     }
 
     private void Rotate()
