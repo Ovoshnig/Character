@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class Interactions : MonoBehaviour
 {
+    [SerializeField] private MessageDisplayer _messageDisplayer;
+
+    private const string InteractionZoneEnteredMessage = "Нажмите E для взаимодействия";
+
     private PlayerInput _playerInput;
     private bool _isInInteractionZone;
     private Interactable _interactable;
@@ -13,6 +17,7 @@ public class Interactions : MonoBehaviour
         {
             _interactable = interactable;
             _isInInteractionZone = true;
+            _messageDisplayer.DisplayInteractionZoneEntered(InteractionZoneEnteredMessage);
         }
     }
 
@@ -22,6 +27,7 @@ public class Interactions : MonoBehaviour
         {
             _interactable = null;
             _isInInteractionZone = false;
+            _messageDisplayer.DisplayInteractionZoneExit(string.Empty);
         }
     }
 

@@ -9,7 +9,10 @@ public class MessageDisplayer : MonoBehaviour
 
     private Coroutine _previousCoroutine;
 
-    public void Display(string text)
+    public void DisplayInteractionZoneEntered(string text) => _text.text = text;
+    public void DisplayInteractionZoneExit(string text) => _text.text = text;
+
+    public void DisplayInteractionHappened(string text)
     {
         if (_previousCoroutine != null)
             StopCoroutine(_previousCoroutine);

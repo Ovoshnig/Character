@@ -10,5 +10,5 @@ public abstract class Interactable : MonoBehaviour, IInteractable
 
     [SerializeField] private MessageDisplayer _messageDisplayer;
 
-    public virtual void React() => _messageDisplayer.Display(Message);
+    public virtual void React() => _messageDisplayer.DisplayInteractionHappened(Message);
 }
