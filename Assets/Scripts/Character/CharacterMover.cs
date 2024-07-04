@@ -12,6 +12,12 @@ public class CharacterMover : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _rotateInput;
 
+    public void HandleMovement()
+    {
+        Move();
+        Rotate();
+    }
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -30,22 +36,12 @@ public class CharacterMover : MonoBehaviour
     }
 
     private void OnEnable() => _playerInput.Enable();
-
     private void OnDisable() => _playerInput.Disable();
 
     private void OnMovePerformed(InputAction.CallbackContext context) => _moveInput = context.action.ReadValue<Vector2>();
-
     private void OnMoveCancelled(InputAction.CallbackContext context) => _moveInput = Vector2.zero;
-
     private void OnRotatePerformed(InputAction.CallbackContext context) => _rotateInput = context.action.ReadValue<Vector2>();
-
     private void OnRotateCancelled(InputAction.CallbackContext context) => _rotateInput = Vector2.zero;
-
-    private void Update()
-    {
-        Move();
-        Rotate();
-    }
 
     private void Move()
     {

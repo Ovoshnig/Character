@@ -7,6 +7,24 @@ public class Interactions : MonoBehaviour
     private bool _isInInteractionZone;
     private Interactable _interactable;
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Interactable interactable))
+        {
+            _interactable = interactable;
+            _isInInteractionZone = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<IInteractable>(out _))
+        {
+            _interactable = null;
+            _isInInteractionZone = false;
+        }
+    }
+
     private void Awake()
     {
         _playerInput = new PlayerInput();
@@ -26,23 +44,5 @@ public class Interactions : MonoBehaviour
     private void Interact()
     {
         _interactable.React();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Interactable interactable))
-        {
-            _interactable = interactable;
-            _isInInteractionZone = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent<IInteractable>(out _))
-        {
-            _interactable = null;
-            _isInInteractionZone = false;
-        }
     }
 }
