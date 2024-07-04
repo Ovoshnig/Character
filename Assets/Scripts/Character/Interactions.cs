@@ -5,11 +5,10 @@ public class Interactions : MonoBehaviour
 {
     [SerializeField] private MessageDisplayer _messageDisplayer;
 
-    private const string InteractionZoneEnteredMessage = "Нажмите E для взаимодействия";
-
     private PlayerInput _playerInput;
-    private bool _isInInteractionZone;
     private Interactable _interactable;
+    private string _interactionZoneEnteredMessage;
+    private bool _isInInteractionZone;
 
     public void OnTriggerEnter(Collider other)
     {
@@ -17,7 +16,7 @@ public class Interactions : MonoBehaviour
         {
             _interactable = interactable;
             _isInInteractionZone = true;
-            _messageDisplayer.DisplayInteractionZoneEntered(InteractionZoneEnteredMessage);
+            _messageDisplayer.DisplayInteractionZoneEntered(_interactionZoneEnteredMessage);
         }
     }
 
@@ -35,6 +34,7 @@ public class Interactions : MonoBehaviour
     {
         _playerInput = new PlayerInput();
         _playerInput.Player.Interact.performed += TryInteract;
+        _interactionZoneEnteredMessage = $"Нажмите {_playerInput.Player.Interact.GetBindingDisplayString()} для взаимодействия";
     }
 
     private void OnEnable() => _playerInput.Enable();

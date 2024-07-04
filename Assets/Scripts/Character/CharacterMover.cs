@@ -53,6 +53,6 @@ public class CharacterMover : MonoBehaviour
     private void Rotate()
     {
         Vector3 angularVelocity = _rotateSpeed * Time.deltaTime * new Vector3(0f, _rotateInput.x, 0f);
-        _rigidbody.angularVelocity =  angularVelocity;
+        _rigidbody.angularVelocity = angularVelocity;
     }
 }
