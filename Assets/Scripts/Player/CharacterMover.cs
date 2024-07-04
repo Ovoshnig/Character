@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMover : MonoBehaviour
+public class CharacterMover : MonoBehaviour
 {
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _rotateSpeed;
